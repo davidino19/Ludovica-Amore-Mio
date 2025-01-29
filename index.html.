@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffdde1;
+            margin: 0;
+            padding: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: red;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            position: relative;
+        }
+
+        button {
+            font-size: 22px;
+            padding: 14px 28px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .yes {
+            background-color: red;
+            color: white;
+            animation: bounce 1s infinite alternate;
+        }
+
+        .no {
+            background-color: white;
+            color: red;
+            border: 2px solid red;
+            transition: 0.3s ease-in-out;
+        }
+
+        .no:hover {
+            background-color: red;
+            color: white;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            animation: float 5s linear infinite;
+        }
+
+        .floating-text, .floating-cat {
+            position: absolute;
+            font-size: 18px;
+            color: red;
+            opacity: 0.9;
+            font-style: italic;
+            animation: floatText 8s linear infinite;
+        }
+
+        .floating-cat {
+            font-size: 30px;
+            color: white;
+        }
+
+        .message {
+            font-size: 30px;
+            color: red;
+            margin-top: 20px;
+            font-weight: bold;
+            display: none;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        @keyframes floatText {
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Will You Be My Valentine? ❤️</h1>
+    
+    <div class="buttons">
+        <button class="yes" onclick="showMessage()">Yes</button>
+        <button class="no" onclick="addMoreYes()">No</button>
+    </div>
+
+    <p class="message">Un giorno ti sposerò ❤️</p>
+
+    <script>
+        function showMessage() {
+            document.querySelector('.message').style.display = 'block';
+        }
+
+        function addMoreYes() {
+            let container = document.querySelector('.buttons');
+
+            let yesButton = document.createElement('button');
+            yesButton.innerText = "Yes";
+            yesButton.className = "yes";
+            yesButton.onclick = showMessage;
+
+            yesButton.style.position = "absolute";
+            yesButton.style.left = Math.random() * 80 + "%";
+            yesButton.style.top = (Math.random() * 60 + 20) + "vh";
+
+            document.body.appendChild(yesButton);
+
+            createHeart();
+            createFloatingText();
+            createCat();
+        }
+
+        function createHeart() {
+            let heart = document.createElement('div');
+            heart.innerHTML = "❤️";
+            heart.className = "floating-heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function createFloatingText() {
+            let phrases = [
+                "I love you ❤️",
+                "You're my sunshine ❤️",
+                "Forever & Always ❤️",
+                "You make my heart skip a beat ❤️",
+                "Be mine? ❤️",
+                "You're my everything ❤️",
+                "Hugs & Kisses ❤️",
+                "You're perfect! ❤️"
+            ];
+
+            let text = document.createElement('div');
+            text.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+            text.className = "floating-text";
+            text.style.left = Math.random() * 90 + "vw";
+            text.style.top = "100vh";
+            text.style.animationDuration = (Math.random() * 4 + 5) + "s";
+
+            document.body.appendChild(text);
+
+            setTimeout(() => {
+                text.remove();
+            }, 8000);
+        }
+
+        function createCat() {
+            let cats = ["🐱", "😺", "😻", "🐈", "🐈‍⬛", "😸", "😽"];
+            let cat = document.createElement('div');
+            cat.innerText = cats[Math.floor(Math.random() * cats.length)];
+            cat.className = "floating-cat";
+            cat.style.left = Math.random() * 90 + "vw";
+            cat.style.top = "100vh";
+            cat.style.animationDuration = (Math.random() * 4 + 6) + "s";
+
+            document.body.appendChild(cat);
+
+            setTimeout(() => {
+                cat.remove();
+            }, 8000);
+        }
+    </script>
+
+</body>
+</html>
